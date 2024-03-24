@@ -1,48 +1,16 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import './App.css';
+import Sidebar from './components/Sidebar';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import GiftCreation from './components/GiftCreation';
+import GiftClaim from './components/GiftClaim';
 
 const App = () => {
   return (
+    <BrowserRouter>
     <div>
         <div class="min-h-full bg-alternative flex relative max-h-screen">
-        <div id="desktop-nav-sidebar"
-          class="group hidden md:flex md:flex-col h-screen py-5 pt-8 bg-surface-default border-r border-subdued transition-all duration-700 ease-in-out relative md:w-48">
-          <div class="flex-shrink-0 flex items-center px-4"><a class="outline-none"
-              href="">Polymer Gift</a></div>
-          <div class="mt-6 flex flex-col overflow-y-auto h-full">
-            <nav class="mt-8">
-              <div class="space-y-3"><a id="sidebar-item-Stake"
-                  class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
-                  href="https://portfolio.metamask.io/stake?tab=validator">
-                  <div class="flex justify-center items-center mr-2"><svg width="20" height="20" viewBox="0 0 20 20"
-                      class="h-5 w-5 stroke-icon-subdued" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_735_24127)">
-                        <path
-                          d="M3.99902 19C7.24796 17.5 8.87242 16.75 10.4969 16.75M16.9948 19C13.7458 17.5 12.1214 16.75 10.4969 16.75M10.4969 16.75V11.5M10.4969 11.5L10 10.4091M10.4969 11.5V9.5L10.9967 8.5M10 10.4091C10 10.4091 5.00889 11.0985 2.99935 9.5C1.29118 8.14126 1 4.5 1 4.5C1 4.5 5.55008 3.95155 7.54545 5.90909C8.91802 7.25563 10 10.4091 10 10.4091ZM10.9967 8.5C10.9967 8.5 11.5374 4.11404 13.4959 2.5C15.2137 1.08439 18.9941 1 18.9941 1C18.9941 1 19.1777 5.2683 17.4946 7C15.6792 8.86783 10.9967 8.5 10.9967 8.5Z"
-                          stroke-width="1.5" stroke-linecap="round"></path>
-                      </g>
-                      <defs>
-                        <clippath id="clip0_735_24127">
-                          <rect width="20" height="20" fill="white"></rect>
-                        </clippath>
-                      </defs>
-                    </svg></div><span class="truncate">Gift Claim</span>
-                </a><a id="sidebar-item-Send &amp; Receive"
-                  class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
-                  href="">
-                  <div class="flex justify-center items-center mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                      height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-subdued">
-                      <line x1="22" y1="2" x2="11" y2="13"></line>
-                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg></div><span class="truncate">Gift Creation</span>
-                </a></div>
-            </nav>
-          </div><a id="terms-of-service-desktop" target="_blank" href="https://metamask.io/terms.html"
-            class="py-4 -mb-5 border-t border-subdued flex text-subdued cursor-pointer items-center hover:bg-surface-subdued px-6">
-            <div class="font-medium text-sm mr-2">T4E Team</div>
-          </a>
-        </div>
+        <Sidebar />
         <div id="desktop-main-content" class="flex flex-col min-h-screen w-full overflow-y-auto relative">
           <div class="flex flex-col border-b md:border-b-0 dark:border-slate-700">
             <div class="md:hidden flex justify-between lg:justify-start top-0 z-10 flex-shrink-0 h-16 sm:h-20 ">
@@ -126,52 +94,18 @@ const App = () => {
                 <br />
                 <br />
                 <br />
-                <div class="justify-center flex py-2 sm:py-3">
-                  <div id="swap-element"
-                    class="!bg-inherit dark:md:!bg-portfolio-slateGray-500 md:!bg-white w-full rounded-2xl sm:max-w-md py-4 sm:px-3 md:px-8 sm:py-8">
-                    <div id="build-quote" class="space-y-3">
-                      <div class="flex justify-between items-end">
-                        <div class="font-bold text-left dark:text-white">Receiver Address</div>
-                      </div>
-                      <div >
-                        <div class="relative mt-1">
-                          <div class="flex relative h-16">
-                            <div class="flex flex-1 text-left items-center relative">
-                                <input className='pl-6 py-2 w-full h-full rounded-r-lg border dark:border-slate-600 border-slate-300 text-lg bg-surface-default cursor-default dark:text-white focus:ring-1 focus:ring-primary-default' type='text' placeholder='0x... or any address'></input>
-                                </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <br />
+                <Routes>
+                  <Route path="/" element= {<GiftCreation />}></Route>
+                  <Route path="/claim" element={<GiftClaim />}></Route>
+                </Routes>
 
-                    <div class="space-y-3">
-                      <div class="flex justify-between">
-                        <div class="font-bold text-left dark:text-white">Amount</div>
-                      </div>
-                      <div>
-                        <div class="relative mt-1">
-                          <div class="flex relative h-16">
-                            <div class="flex flex-1 text-left items-center">
-                                <input className='pl-6 py-2 w-full h-full rounded-r-lg border dark:border-slate-600 border-slate-300 text-lg bg-surface-default cursor-default dark:text-white focus:ring-1 focus:ring-primary-default' type='number' inputMode='decimals' placeholder='0'></input>
-                                </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="justify-center text-center w-full mt-10"><button
-                        class="transition px-5 py-2 rounded-full border flex items-center justify-center text-center w-full text-sm opacity-50 border-primary-default bg-primary-default text-inverse">
-                          <span>
-                          Create</span></button>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </main>
         </div>
       </div>
     </div>
+    </BrowserRouter>
   );
 }
 
