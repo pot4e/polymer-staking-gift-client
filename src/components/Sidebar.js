@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import t4e_lg from "./lg-t4e.svg";
 
 function Sidebar () {
     return (
@@ -40,7 +41,8 @@ function Sidebar () {
             </nav>
           </div><a id="terms-of-service-desktop" target="_blank" href=""
             class="py-4 -mb-5 border-t border-subdued flex text-subdued cursor-pointer items-center hover:bg-surface-subdued px-6">
-            <div class="font-medium text-sm mr-2">T4E Team</div>
+            <img width="24" height="24" src={t4e_lg}></img>
+            <div class="font-medium text-sm mr-2"  >   T4E Team</div>
           </a>
         </div>
     );
