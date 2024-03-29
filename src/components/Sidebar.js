@@ -26,7 +26,7 @@ function Sidebar () {
                           <rect width="20" height="20" fill="white"></rect>
                         </clippath>
                       </defs>
-                    </svg></div><span class="truncate">Gift Claim</span>
+                    </svg></div><span class="truncate">Gift Creation</span>
                 </Link>
                 <Link to="/claim" id="sidebar-item-Send &amp; Receive"
                   class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
@@ -36,7 +36,7 @@ function Sidebar () {
                       stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-subdued">
                       <line x1="22" y1="2" x2="11" y2="13"></line>
                       <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg></div><span class="truncate">Gift Creation</span>
+                    </svg></div><span class="truncate">Gift Claim</span>
                 </Link></div>
             </nav>
           </div><a id="terms-of-service-desktop" target="_blank" href=""

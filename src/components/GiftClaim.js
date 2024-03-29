@@ -25,9 +25,8 @@ function GiftClaim () {
                     <td>Thornton</td>
                     <td><button type="button" class="btn btn-secondary">Claim</button></td>
                     </tr>
-
                 </tbody>
-                </table>
+            </table>
       </div>
     );
 }

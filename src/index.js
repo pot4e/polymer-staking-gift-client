@@ -10,22 +10,34 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import {
-  mainnet,
-  polygon,
-  optimism,
-  arbitrum,
-  base,
-} from 'wagmi/chains';
-import {
   QueryClientProvider,
   QueryClient,
 } from "@tanstack/react-query";
 import App from './App';
+
+const BASESepoliaTestnet = {
+  id: 84532,
+  name: 'BASE Sepolia',
+  nativeCurrency: { name: 'Base', symbol: 'BASE', decimals: 18 },
+  rpcUrls: {
+    default: { http: ['https://rpc.notadegen.com/base/sepolia'] },
+  }
+}
+
+const OPSepoliaTestnet = {
+  id: 11155420,
+  name: 'Optimism Sepolia',
+  nativeCurrency: { name: 'Optimism', symbol: 'OP', decimals: 18 },
+  rpcUrls: {
+    default: { http: ['https://optimism-sepolia.blockpi.network/v1/rpc/public'] },
+  }
+}
+
 const config = getDefaultConfig({
-  appName: 'My RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
-  chains: [mainnet, polygon, optimism, arbitrum, base],
-  // ssr: true, // If your dApp uses server side rendering (SSR)
+  appName: 'My App',
+  projectId: 'fba08911e2aad64000d0adf60fc08652',
+  chains: [BASESepoliaTestnet, OPSepoliaTestnet],
+  ssr: false, // If your dApp uses server side rendering (SSR)
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
