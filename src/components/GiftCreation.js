@@ -1,5 +1,18 @@
 import React from "react";
 
+const config = {
+  "optimism": {
+    "portAddr": "0xfa544dF494A0d8b7F2653500e502e96F5689F104",
+    "channelId": "channel-39382",
+    "timeout": 36000
+  },
+  "base": {
+    "portAddr": "0xF6d50cE570e82cD5934FD9026A206C22F5dB1264",
+    "channelId": "channel-39383",
+    "timeout": 36000
+  }
+}
+
 function GiftCreation () {
     return (
         <div class="justify-center flex py-2 sm:py-3">
@@ -13,7 +26,11 @@ function GiftCreation () {
               <div class="relative mt-1">
                 <div class="flex relative h-16">
                   <div class="flex flex-1 text-left items-center relative">
-                      <input className='pl-6 py-2 w-full h-full rounded-r-lg border dark:border-slate-600 border-slate-300 text-lg bg-surface-default cursor-default dark:text-white focus:ring-1 focus:ring-primary-default' type='text' placeholder='0x... or any address'></input>
+                      <input className='pl-6 py-2 w-full h-full rounded-r-lg border dark:border-slate-600 border-slate-300 text-lg bg-surface-default cursor-default dark:text-white focus:ring-1 focus:ring-primary-default'
+                            type='text'
+                            placeholder='0x... or any address'
+                            
+                      />
                       </div>
                 </div>
               </div>
