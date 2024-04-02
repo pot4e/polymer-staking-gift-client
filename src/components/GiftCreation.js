@@ -1,20 +1,70 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useChains, useChainId, useAccount, useWriteContract, useWaitForTransactionReceipt, useSwitchChain } from "wagmi";
+import XGiftVault_ABI from "../config/XGiftVault_ABI.json";
+import chainPolymer from "../config/chainPolymer.json";
+import {parseUnits, encodeBytes32String} from 'ethers';
+import { toast} from 'react-toastify';
 
-const config = {
-  "optimism": {
-    "portAddr": "0xfa544dF494A0d8b7F2653500e502e96F5689F104",
-    "channelId": "channel-39382",
-    "timeout": 36000
-  },
-  "base": {
-    "portAddr": "0xF6d50cE570e82cD5934FD9026A206C22F5dB1264",
-    "channelId": "channel-39383",
-    "timeout": 36000
-  }
-}
 
 function GiftCreation () {
-    return (
+  const chainId = useChainId();
+  const currentChain = useChains();
+  const {address} = useAccount();
+  const { switchChain } = useSwitchChain()
+  
+  const [receiverAddress, setReceiverAddress] = useState("");
+  const [amount, setAmount] =useState("");
+  const { data: hash, error, writeContract } = useWriteContract();
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+      useWaitForTransactionReceipt({
+        hash,
+      });
+
+  const handleAddressChange = (event) => {
+    setReceiverAddress(event.target.value);
+  }
+
+  const handleAmount = (event) => {
+    setAmount(event.target.value);
+  }
+  
+  const handleCreation = async () => {
+    if (chainId !== currentChain[0].id ){
+      await switchChain({chainId: currentChain[0].id});
+    }
+    if(receiverAddress === "") {
+      toast.error('Please enter receiver address');
+      return
+    }
+    if (address === receiverAddress){
+      toast.error('Recevier address shoule be differnent with current wallet address');
+      return
+    }
+    if(amount <= 0) {
+      toast.error('You are forgetting to enter amount');
+      return
+    }
+    await writeContract({
+      address: chainPolymer.base.portAddr,
+      abi: XGiftVault_ABI,
+      functionName: 'createGift',
+      value: parseUnits(amount, 18),
+      args: [encodeBytes32String(chainPolymer.base.channelId), chainPolymer.base.timeout, receiverAddress]
+    });
+  }
+  useEffect(() => {
+    if (isConfirming && !isConfirmed) {
+      toast.info("Waiting for confirmation...");
+    }
+    if (isConfirmed) {
+      toast.success('Transaction confirmed!!!');
+    }
+    if (error){
+      toast.error(error.shortMessage);
+    }
+  }, [isConfirming, isConfirmed, error]);
+
+  return (
         <div class="justify-center flex py-2 sm:py-3">
         <div id="swap-element"
           class="!bg-inherit dark:md:!bg-portfolio-slateGray-500 md:!bg-white w-full rounded-2xl sm:max-w-md py-4 sm:px-3 md:px-8 sm:py-8">
@@ -28,8 +78,8 @@ function GiftCreation () {
                   <div class="flex flex-1 text-left items-center relative">
                       <input className='pl-6 py-2 w-full h-full rounded-r-lg border dark:border-slate-600 border-slate-300 text-lg bg-surface-default cursor-default dark:text-white focus:ring-1 focus:ring-primary-default'
                             type='text'
+                            onChange={handleAddressChange} value={receiverAddress || ""}
                             placeholder='0x... or any address'
-                            
                       />
                       </div>
                 </div>
@@ -46,16 +96,27 @@ function GiftCreation () {
               <div class="relative mt-1">
                 <div class="flex relative h-16">
                   <div class="flex flex-1 text-left items-center">
-                      <input className='pl-6 py-2 w-full h-full rounded-r-lg border dark:border-slate-600 border-slate-300 text-lg bg-surface-default cursor-default dark:text-white focus:ring-1 focus:ring-primary-default' type='number' inputMode='decimals' placeholder='0'></input>
+                      <input className='pl-6 py-2 w-full h-full rounded-r-lg border dark:border-slate-600 border-slate-300 text-lg bg-surface-default cursor-default dark:text-white focus:ring-1 focus:ring-primary-default' type='number' inputMode='decimals' 
+                      onChange={handleAmount} value={amount || ""}
+                      placeholder='0'></input>
                       </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="justify-center text-center w-full mt-10"><button
-              class="transition px-5 py-2 rounded-full border flex items-center justify-center text-center w-full text-sm opacity-50 border-primary-default bg-primary-default text-inverse">
-                <span>
-                Create</span></button>
+              class="transition px-5 py-2 rounded-full border flex items-center justify-center text-center w-full text-sm opacity-50 border-primary-default bg-primary-default text-inverse" 
+              onClick={handleCreation}
+              disabled= {address ==null}
+              >
+              <span
+                >{address != null ? 'Create' : 'Connect Wallet'}
+              </span>
+              </button>
+          </div>
+          <br />
+          <div class="justify-center text-center w-full mt-10">
+          {hash && <a target="_blank" href={chainPolymer.base.explorerUrl + "/tx/" +hash} >Transaction Hash (Click here)</a> }         
           </div>
         </div>
       </div>

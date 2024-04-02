@@ -1,9 +1,12 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import './App.css';
 import Sidebar from './components/Sidebar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import GiftCreation from './components/GiftCreation';
 import GiftClaim from './components/GiftClaim';
+
 
 const App = () => {
   return (
@@ -31,6 +34,17 @@ const App = () => {
                   </div>
                 </div>
                 <br />
+                <ToastContainer
+                position='top-right'
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                draggable
+                pauseOnHover
+                theme='light'
+              />
                 <br />
                 <br />
                 <Routes>

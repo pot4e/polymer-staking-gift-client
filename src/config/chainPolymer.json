@@ -1,0 +1,14 @@
+{
+    "optimism": {
+      "portAddr": "0x8893485817eae9e67c3581000a295440B167dB8C",
+      "channelId": "channel-40096",
+      "timeout": 36000,
+      "explorerUrl": "https://optimism-sepolia.blockscout.com/"
+    },
+    "base": {
+      "portAddr": "0xbEE2ec2da522AD9cFb57C533383BFeC8537b5F04",
+      "channelId": "channel-40097",
+      "timeout": 36000,
+      "explorerUrl": "https://base-sepolia.blockscout.com/"
+    }
+}
