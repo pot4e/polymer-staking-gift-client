@@ -49,6 +49,9 @@ https://github.com/facebook/create-react-app
 
 **React Bootstrap** : Refer to https://react-bootstrap.github.io/getting-started/introduction/ to understand how to use React Bootstrap
 
+### Smart Contract with Polymers
+the smart contract is using which is placing here: [smart contract](https://github.com/pot4e/polymer-gift-smartcontract)
+
 ### Advanced Configuration
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
