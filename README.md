@@ -1,3 +1,4 @@
+# Production Ready
 ## What is the use of this Repo
 
 This Project is a Polymer Gift  Project which the following
@@ -52,4 +53,4 @@ https://github.com/facebook/create-react-app
 ### Smart Contract with Polymers
 the smart contract is using which is placing here: [smart contract](https://github.com/pot4e/polymer-gift-smartcontract)
 ## Live host DAPP
-Update soon!!!
+Try out here: [https://gift.tuananh.xyz/](https://gift.tuananh.xyz/)
